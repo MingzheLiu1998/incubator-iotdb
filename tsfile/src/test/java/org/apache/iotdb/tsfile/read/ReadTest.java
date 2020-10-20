@@ -122,10 +122,19 @@ public class ReadTest {
 
     int cnt = 0;
     while (dataSet.hasNext()) {
-      dataSet.next();
+      RowRecord r = dataSet.next();
+      if (cnt == 1) {
+        assertEquals(1480562618974L, r.getTimestamp());
+        Field f1 = r.getFields().get(0);
+        assertEquals(9732, f1.getLongV(), 0.0);
+      }
+      if (cnt == 2) {
+        assertEquals(1480562618977L, r.getTimestamp());
+        Field f2 = r.getFields().get(0);
+        assertEquals(9742, f2.getLongV(), 0.0);
+      }
       cnt++;
     }
-
   }
 
   @Test

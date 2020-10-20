@@ -120,10 +120,21 @@ public class TimePlainEncodeReadTest {
     QueryExpression queryExpression = QueryExpression.create(pathList, finalFilter);
     QueryDataSet dataSet = roTsFile.query(queryExpression);
 
+    int cnt = 1;
     while (dataSet.hasNext()) {
-      dataSet.next();
+      RowRecord r = dataSet.next();
+      if (cnt == 1) {
+        assertEquals(1480562618973L, r.getTimestamp());
+      } else if (cnt == 2) {
+        assertEquals(1480562618974L, r.getTimestamp());
+      } else if (cnt == 3) {
+        assertEquals(1480562618975L, r.getTimestamp());
+      } else if (cnt == 4) {
+        assertEquals(1480562618976L, r.getTimestamp());
+      }
+      cnt++;
     }
-
+    assertEquals(5, cnt);
   }
 
   @Test

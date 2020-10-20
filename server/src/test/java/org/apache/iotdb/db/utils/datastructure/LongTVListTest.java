@@ -86,6 +86,8 @@ public class LongTVListTest {
       for (int i = 0; i < tvList.size; i++) {
         tvList.getLong(i);
         tvList.getTime(i);
+        Assert.assertEquals(i, tvList.getLong((int)i));
+        Assert.assertEquals(i, tvList.getTime((int)i));
       }
     }
   }

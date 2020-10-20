@@ -80,12 +80,18 @@ public class IoTDBPreparedStatementTest {
 
   @SuppressWarnings("resource")
   @Test
-  public void unusedArgument() throws SQLException {
-    String sql = "SELECT status, temperature FROM root.ln.wf01.wt01 WHERE temperature < 24 and time > 2017-11-1 0:13:00";
+  public void unusedArgument() throws Exception {
+    String sql = "SELECT status, temperature FROM root.ln.wf01.wt01 WHERE temperature < ? and time > 2017-11-1 0:13:00";
     IoTDBPreparedStatement ps = new IoTDBPreparedStatement(connection, client, sessionId, sql,
         zoneId);
     ps.setString(1, "123");
     ps.execute();
+    ArgumentCaptor<TSExecuteStatementReq> argument = ArgumentCaptor
+            .forClass(TSExecuteStatementReq.class);
+    verify(client).executeStatement(argument.capture());
+    assertEquals(
+            "SELECT status, temperature FROM root.ln.wf01.wt01 WHERE temperature < '123' and time > 2017-11-1 0:13:00",
+            argument.getValue().getStatement());
   }
 
   @SuppressWarnings("resource")
