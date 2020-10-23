@@ -531,7 +531,7 @@ public class IoTDBSimpleQueryIT {
           count++;
         }
       }
-
+      Assert.assertEquals(6, count);
       System.out.println(count);
 
     }

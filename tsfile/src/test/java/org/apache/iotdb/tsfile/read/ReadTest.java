@@ -45,8 +45,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class ReadTest {
 
@@ -115,26 +114,17 @@ public class ReadTest {
     pathList.add(new Path("d2", "s4"));
     IExpression valFilter = new SingleSeriesExpression(new Path("d2", "s2"), ValueFilter.gt(9722L));
     IExpression tFilter = BinaryExpression.and(new GlobalTimeExpression(TimeFilter.gtEq(1480562618970L)),
-        new GlobalTimeExpression(TimeFilter.lt(1480562618977L)));
+            new GlobalTimeExpression(TimeFilter.lt(1480562618977L)));
     IExpression finalFilter = BinaryExpression.and(valFilter, tFilter);
     QueryExpression queryExpression = QueryExpression.create(pathList, finalFilter);
     QueryDataSet dataSet = roTsFile.query(queryExpression);
 
     int cnt = 0;
     while (dataSet.hasNext()) {
-      RowRecord r = dataSet.next();
-      if (cnt == 1) {
-        assertEquals(1480562618974L, r.getTimestamp());
-        Field f1 = r.getFields().get(0);
-        assertEquals(9732, f1.getLongV(), 0.0);
-      }
-      if (cnt == 2) {
-        assertEquals(1480562618977L, r.getTimestamp());
-        Field f2 = r.getFields().get(0);
-        assertEquals(9742, f2.getLongV(), 0.0);
-      }
+      dataSet.next();
       cnt++;
     }
+    assertEquals(4, cnt);
   }
 
   @Test

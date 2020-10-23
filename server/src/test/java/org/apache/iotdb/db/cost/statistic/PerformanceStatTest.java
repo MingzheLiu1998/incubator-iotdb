@@ -86,6 +86,7 @@ public class PerformanceStatTest {
   @Test
   public void testSwitch() {
     Measurement measurement = Measurement.INSTANCE;
+    Assert.assertNotNull(measurement);
     try {
       measurement.start();
       measurement.startStatistics();

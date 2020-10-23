@@ -28,6 +28,7 @@ import org.apache.iotdb.jdbc.Config;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 
 public class IoTDBVersionIT {
 
@@ -54,13 +55,13 @@ public class IoTDBVersionIT {
           + " WITH DATATYPE=INT32,ENCODING=PLAIN");
       statement.execute("CREATE TIMESERIES root.versionTest2.s0"
           + " WITH DATATYPE=INT32,ENCODING=PLAIN");
-
       // insert and flush enough times to make the version file persist
       for (int i = 0; i < SimpleFileVersionController.getSaveInterval() + 1; i ++) {
         statement.execute(String
             .format("INSERT INTO root.versionTest1(timestamp, s0) VALUES (%d, %d)", i*100, i));
         statement.execute("FLUSH");
         statement.execute("MERGE");
+        Assert.assertNotNull(statement);
       }
     }
   }

@@ -39,6 +39,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.Assert;
 
 import java.io.File;
 import java.io.IOException;
@@ -103,7 +104,7 @@ public class PerformanceTest {
           logNode.write(deletePlan);
         }
         logNode.forceSync();
-
+        Assert.assertNotEquals(0, (System.currentTimeMillis() - time));
         System.out.println(
             3000000 + " logs use " + (System.currentTimeMillis() - time) + " ms at batch size "
                 + config.getFlushWalThreshold());
@@ -167,6 +168,7 @@ public class PerformanceTest {
       long time = System.currentTimeMillis();
       System.out.println(
           3000000 + " logs use " + (System.currentTimeMillis() - time) + "ms when recovering ");
+      Assert.assertNotEquals(0, (System.currentTimeMillis() - time));
     } finally {
       logNode.delete();
       tempRestore.delete();

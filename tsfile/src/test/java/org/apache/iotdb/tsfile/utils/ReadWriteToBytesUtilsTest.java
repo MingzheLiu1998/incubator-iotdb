@@ -23,6 +23,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import org.apache.iotdb.tsfile.utils.ReadWriteIOUtils;
@@ -38,7 +39,7 @@ public class ReadWriteToBytesUtilsTest {
       byte[] bytes = outputstream.toByteArray();
       ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
       short k = ReadWriteIOUtils.readShort(inputStream);
-      assert i == k;
+      Assert.assertEquals(i, k);
     }
   }
 
@@ -49,7 +50,7 @@ public class ReadWriteToBytesUtilsTest {
       ReadWriteIOUtils.write(i, output);
       output.flip();
       short k = ReadWriteIOUtils.readShort(output);
-      assert i == k;
+      Assert.assertEquals(i, k);
     }
   }
 
@@ -62,7 +63,7 @@ public class ReadWriteToBytesUtilsTest {
       byte[] bytes = outputstream.toByteArray();
       ByteBuffer buffer = ByteBuffer.wrap(bytes);
       short k = ReadWriteIOUtils.readShort(buffer);
-      assert i == k;
+      Assert.assertEquals(i, k);
     }
   }
 

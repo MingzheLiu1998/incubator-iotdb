@@ -32,6 +32,7 @@ import org.apache.iotdb.tsfile.file.header.PageHeader;
 import org.apache.iotdb.tsfile.utils.FileGenerator;
 import org.apache.iotdb.tsfile.utils.Pair;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -75,6 +76,7 @@ public class TsFileSequenceReaderTest {
         case MetaMarker.CHUNK_GROUP_FOOTER:
           ChunkGroupFooter footer = reader.readChunkGroupFooter();
           long endOffset = reader.position();
+          Assert.assertNotEquals(startOffset, endOffset);
           Pair<Long, Long> pair = new Pair<>(startOffset, endOffset);
           deviceChunkGroupMetadataOffsets.putIfAbsent(footer.getDeviceID(), new ArrayList<>());
           List<Pair<Long, Long>> metadatas = deviceChunkGroupMetadataOffsets

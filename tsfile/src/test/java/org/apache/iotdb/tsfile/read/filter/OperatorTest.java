@@ -165,6 +165,7 @@ public class OperatorTest {
       orFilter.satisfy(i, i + 0.1);
     }
     long endTime = System.currentTimeMillis();
+    Assert.assertNotEquals(startTime, endTime);
     System.out.println("EfficiencyTest for Filter: \n\tFilter Expression = " + orFilter + "\n\tCOUNT = "
         + EFFICIENCY_TEST_COUNT + "\n\tTotal Time = " + (endTime - startTime) + "ms.");
   }

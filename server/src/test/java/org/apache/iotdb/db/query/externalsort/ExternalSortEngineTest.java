@@ -75,6 +75,8 @@ public class ExternalSortEngineTest {
     PriorityMergeReader reader1 = new PriorityMergeReader(readerList1, 1);
     PriorityMergeReader reader2 = new PriorityMergeReader(readerList2, 1);
 //    check(reader1, reader2);
+    Assert.assertEquals(1, readerList1.size());
+    Assert.assertEquals(3, readerList2.size());
     reader1.close();
     reader2.close();
   }
@@ -95,6 +97,8 @@ public class ExternalSortEngineTest {
     PriorityMergeReader reader2 = new PriorityMergeReader(readerList2, 1);
 
 //    check(reader1, reader2);
+    Assert.assertEquals(2, readerList1.size());
+    Assert.assertEquals(100, readerList2.size());
     reader1.close();
     reader2.close();
   }

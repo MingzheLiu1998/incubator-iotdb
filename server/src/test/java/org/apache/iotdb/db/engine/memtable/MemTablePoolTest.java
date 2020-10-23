@@ -21,6 +21,7 @@ package org.apache.iotdb.db.engine.memtable;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import org.apache.iotdb.db.rescon.MemTablePool;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,6 +51,7 @@ public class MemTablePoolTest {
       memTables.add(memTable);
     }
     time -= System.currentTimeMillis();
+    Assert.assertNotEquals(0, time);
     System.out.println("memtable pool use deque and synchronized consume:" + time);
   }
 

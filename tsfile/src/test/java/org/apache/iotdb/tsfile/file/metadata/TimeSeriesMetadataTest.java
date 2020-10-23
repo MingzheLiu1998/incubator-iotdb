@@ -28,6 +28,7 @@ import java.nio.channels.FileChannel;
 import org.apache.iotdb.tsfile.constant.TestConstant;
 import org.apache.iotdb.tsfile.file.metadata.utils.TestHelper;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,6 +57,7 @@ public class TimeSeriesMetadataTest {
     TimeseriesMetadata readMetadata = deSerialized();
     timeseriesMetadata.equals(readMetadata);
     serialized(readMetadata);
+    Assert.assertNotNull(readMetadata);
   }
 
   private TimeseriesMetadata deSerialized() {
