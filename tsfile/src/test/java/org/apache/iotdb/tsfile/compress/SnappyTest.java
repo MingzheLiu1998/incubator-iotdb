@@ -83,7 +83,7 @@ public class SnappyTest {
         .allocateDirect(Snappy.uncompressedLength(compressed) + 1);
     Snappy.uncompress(compressed, uncompressedByteBuffer);
     System.out.println("decompression time cost:" + (System.currentTimeMillis() - time));
-    assert input.equals(ReadWriteIOUtils.readStringFromDirectByteBuffer(uncompressedByteBuffer));
+    Assert.assertEquals(input, ReadWriteIOUtils.readStringFromDirectByteBuffer(uncompressedByteBuffer));
   }
 
 }

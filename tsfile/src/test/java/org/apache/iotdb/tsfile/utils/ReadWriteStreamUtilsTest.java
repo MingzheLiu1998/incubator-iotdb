@@ -117,23 +117,13 @@ public class ReadWriteStreamUtilsTest {
   /**
    * @see {@link #testReadUnsignedVarInt()}
    */
-  @Test
-  public void testWriteUnsignedVarInt() {
-  }
-
   /**
    * @see {@link #testReadIntLittleEndianPaddedOnBitWidth()}
    */
-  @Test
-  public void testWriteIntLittleEndianPaddedOnBitWidth() {
-  }
-
   /**
    * @see {@link #testReadLongLittleEndianPaddedOnBitWidth()}
    */
-  @Test
-  public void testWriteLongLittleEndianPaddedOnBitWidth() {
-  }
+
 
   @Test
   public void testReadIntLittleEndianPaddedOnBitWidth() throws IOException {
